@@ -2,6 +2,8 @@
 # Definitions
 ##############################
 
+SHELL=/bin/bash
+
 USER_APPS = {index,puzzle,maze,bird,turtle,movie,pond/docs,pond/tutor,pond/duck}
 ALL_JSON = {./,index,puzzle,maze,bird,turtle,movie,pond/docs,pond,pond/tutor,pond/duck}
 ALL_TEMPLATES = appengine/template.soy,appengine/index/template.soy,appengine/puzzle/template.soy,appengine/maze/template.soy,appengine/bird/template.soy,appengine/turtle/template.soy,appengine/movie/template.soy,appengine/pond/docs/template.soy,appengine/pond/template.soy,appengine/pond/tutor/template.soy,appengine/pond/duck/template.soy
@@ -128,6 +130,22 @@ clean-languages:
 clean-deps:
 	rm -rf appengine/third-party
 	rm -rf third-party
+
+# Ubi-kids (only maze in english and french)
+
+UBI_KIDS_APPS = maze
+UBI_KIDS_JSON = {./,maze}
+ubi-kids: deps
+	$(SOY_EXTRACTOR) --outputFile extracted_msgs.xlf --srcs $(ALL_TEMPLATES)
+	i18n/xliff_to_json.py --xlf extracted_msgs.xlf --templates $(ALL_TEMPLATES)
+	@for app in $(UBI_KIDS_JSON); do \
+		mkdir -p appengine/$$app/generated; \
+		i18n/json_to_js.py --path_to_jar third-party --output_dir appengine/$$app/generated --template appengine/$$app/template.soy --key_file json/keys.json json/*.json; \
+	done
+	echo; \
+	echo --- maze; \
+	python build-app.py maze en;
+	python build-app.py maze fr;
 
 # Prevent non-traditional rules from exiting with no changes.
 .PHONY: deps
