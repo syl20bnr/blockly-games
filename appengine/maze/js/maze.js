@@ -67,8 +67,43 @@ Maze.SKINS = [
   // winSound: List of sounds (in various formats) to play when the player wins.
   // crashSound: List of sounds (in various formats) for player crashes.
   // crashType: Behaviour when player crashes (stop, spin, or fall).
+  // {
+  //   sprite: 'maze/pegman.png',
+  //   tiles: 'maze/tiles_pegman.png',
+  //   marker: 'maze/marker.png',
+  //   background: false,
+  //   graph: false,
+  //   look: '#000',
+  //   winSound: ['maze/win.mp3', 'maze/win.ogg'],
+  //   crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
+  //   crashType: Maze.CRASH_STOP
+  // },
+  // {
+  //   sprite: 'maze/astro.png',
+  //   tiles: 'maze/tiles_astro.png',
+  //   marker: 'maze/marker.png',
+  //   background: 'maze/bg_astro.jpg',
+  //   // Coma star cluster, photo by George Hatfield, used with permission.
+  //   graph: false,
+  //   look: '#fff',
+  //   winSound: ['maze/win.mp3', 'maze/win.ogg'],
+  //   crashSound: ['maze/fail_astro.mp3', 'maze/fail_astro.ogg'],
+  //   crashType: Maze.CRASH_SPIN
+  // },
+  // {
+  //   sprite: 'maze/panda.png',
+  //   tiles: 'maze/tiles_panda.png',
+  //   marker: 'maze/marker.png',
+  //   background: 'maze/bg_panda.jpg',
+  //   // Spring canopy, photo by Rupert Fleetingly, CC licensed for reuse.
+  //   graph: false,
+  //   look: '#000',
+  //   winSound: ['maze/win.mp3', 'maze/win.ogg'],
+  //   crashSound: ['maze/fail_panda.mp3', 'maze/fail_panda.ogg'],
+  //   crashType: Maze.CRASH_FALL
+  // },
   {
-    sprite: 'maze/pegman.png',
+    sprite: 'maze/mario.png',
     tiles: 'maze/tiles_pegman.png',
     marker: 'maze/marker.png',
     background: false,
@@ -79,28 +114,15 @@ Maze.SKINS = [
     crashType: Maze.CRASH_STOP
   },
   {
-    sprite: 'maze/astro.png',
-    tiles: 'maze/tiles_astro.png',
+    sprite: 'maze/peach.png',
+    tiles: 'maze/tiles_pegman.png',
     marker: 'maze/marker.png',
-    background: 'maze/bg_astro.jpg',
-    // Coma star cluster, photo by George Hatfield, used with permission.
-    graph: false,
-    look: '#fff',
-    winSound: ['maze/win.mp3', 'maze/win.ogg'],
-    crashSound: ['maze/fail_astro.mp3', 'maze/fail_astro.ogg'],
-    crashType: Maze.CRASH_SPIN
-  },
-  {
-    sprite: 'maze/panda.png',
-    tiles: 'maze/tiles_panda.png',
-    marker: 'maze/marker.png',
-    background: 'maze/bg_panda.jpg',
-    // Spring canopy, photo by Rupert Fleetingly, CC licensed for reuse.
+    background: false,
     graph: false,
     look: '#000',
     winSound: ['maze/win.mp3', 'maze/win.ogg'],
-    crashSound: ['maze/fail_panda.mp3', 'maze/fail_panda.ogg'],
-    crashType: Maze.CRASH_FALL
+    crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
+    crashType: Maze.CRASH_STOP
   }
 ];
 Maze.SKIN_ID = BlocklyGames.getNumberParamFromUrl('skin', 0, Maze.SKINS.length);
@@ -816,7 +838,7 @@ Maze.showPegmanMenu = function(e) {
     return;
   }
   var button = document.getElementById('pegmanButton');
-  Blockly.addClass_(button, 'buttonHover');
+  Blockly.utils.addClass(button, 'buttonHover');
   menu.style.top = (button.offsetTop + button.offsetHeight) + 'px';
   menu.style.left = button.offsetLeft + 'px';
   menu.style.display = 'block';
@@ -840,7 +862,7 @@ Maze.hidePegmanMenu = function(e) {
     return;
   }
   document.getElementById('pegmanMenu').style.display = 'none';
-  Blockly.removeClass_(document.getElementById('pegmanButton'), 'buttonHover');
+  Blockly.utils.removeClass(document.getElementById('pegmanButton'), 'buttonHover');
   if (Maze.pegmanMenuMouse_) {
     Blockly.unbindEvent_(Maze.pegmanMenuMouse_);
     delete Maze.pegmanMenuMouse_;
