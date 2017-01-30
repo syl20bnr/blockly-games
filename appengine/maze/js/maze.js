@@ -886,7 +886,7 @@ Maze.reset = function(first) {
 
   if (first) {
     Maze.pegmanD = Maze.startDirection + 1;
-    Maze.scheduleFinish(false);
+    Maze.scheduleStart();
     Maze.pidList.push(setTimeout(function() {
       Maze.stepSpeed = 100;
       Maze.schedule([Maze.pegmanX, Maze.pegmanY, Maze.pegmanD * 4],
@@ -1327,15 +1327,11 @@ Maze.scheduleFail = function(forward) {
 };
 
 /**
- * Schedule the animations and sound for a victory dance.
- * @param {boolean} sound Play the victory sound.
+ * Schedule the animations for a start.
  */
-Maze.scheduleFinish = function(sound) {
+Maze.scheduleStart = function() {
   var direction16 = Maze.constrainDirection16(Maze.pegmanD * 4);
   Maze.displayPegman(Maze.pegmanX, Maze.pegmanY, 16);
-  if (sound) {
-    BlocklyGames.workspace.playAudio('win', 0.5);
-  }
   Maze.stepSpeed = 150;  // Slow down victory animation a bit.
   Maze.pidList.push(setTimeout(function() {
     Maze.displayPegman(Maze.pegmanX, Maze.pegmanY, 18);
@@ -1346,6 +1342,27 @@ Maze.scheduleFinish = function(sound) {
   Maze.pidList.push(setTimeout(function() {
       Maze.displayPegman(Maze.pegmanX, Maze.pegmanY, direction16);
     }, Maze.stepSpeed * 3));
+};
+
+/**
+ * Schedule the animations and sound for a victory dance.
+ * @param {boolean} sound Play the victory sound.
+ */
+Maze.scheduleFinish = function(sound) {
+  Maze.displayPegman(Maze.pegmanX, Maze.pegmanY, 16);
+  if (sound) {
+    BlocklyGames.workspace.playAudio('win', 0.5);
+  }
+  Maze.stepSpeed = 150;  // Slow down victory animation a bit.
+  var i = 1;
+  for (; i <= 6; i = i + 2){
+    Maze.pidList.push(setTimeout(function() {
+      Maze.displayPegman(Maze.pegmanX, Maze.pegmanY, 16);
+    }, Maze.stepSpeed * i));
+    Maze.pidList.push(setTimeout(function() {
+      Maze.displayPegman(Maze.pegmanX, Maze.pegmanY, 18);
+    }, Maze.stepSpeed * (i + 1)));
+  }
 };
 
 /**
