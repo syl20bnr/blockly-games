@@ -104,9 +104,9 @@ Maze.SKINS = [
   // },
   {
     sprite: 'maze/mario.png',
-    tiles: 'maze/tiles_pegman.png',
+    tiles: 'maze/tiles_mariokart.png',
     marker: 'maze/flag.png',
-    background: false,
+    background: 'maze/bg_mariokart.png',
     graph: false,
     look: '#000',
     winSound: ['maze/mk64_1stplace.wav', 'maze/mk64_1stplace.wav'],
@@ -115,9 +115,9 @@ Maze.SKINS = [
   },
   {
     sprite: 'maze/peach.png',
-    tiles: 'maze/tiles_pegman.png',
+    tiles: 'maze/tiles_mariokart.png',
     marker: 'maze/flag.png',
-    background: false,
+    background: 'maze/bg_mariokart.png',
     graph: false,
     look: '#000',
     winSound: ['maze/mk64_1stplace.wav', 'maze/mk64_1stplace.wav'],
