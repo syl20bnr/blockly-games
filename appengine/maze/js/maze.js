@@ -105,7 +105,7 @@ Maze.SKINS = [
   {
     sprite: 'maze/mario.png',
     tiles: 'maze/tiles_pegman.png',
-    marker: 'maze/marker.png',
+    marker: 'maze/flag.png',
     background: false,
     graph: false,
     look: '#000',
@@ -116,7 +116,7 @@ Maze.SKINS = [
   {
     sprite: 'maze/peach.png',
     tiles: 'maze/tiles_pegman.png',
-    marker: 'maze/marker.png',
+    marker: 'maze/flag.png',
     background: false,
     graph: false,
     look: '#000',
@@ -448,7 +448,7 @@ Maze.drawMap = function() {
   finishMarker.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href',
       Maze.SKIN.marker);
   finishMarker.setAttribute('height', 34);
-  finishMarker.setAttribute('width', 20);
+  finishMarker.setAttribute('width', 40);
   svg.appendChild(finishMarker);
 
   // Pegman's clipPath element, whose (x, y) is reset by Maze.displayPegman
