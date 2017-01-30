@@ -109,8 +109,8 @@ Maze.SKINS = [
     background: false,
     graph: false,
     look: '#000',
-    winSound: ['maze/win.mp3', 'maze/win.ogg'],
-    crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
+    winSound: ['maze/mk64_1stplace.wav', 'maze/mk64_1stplace.wav'],
+    crashSound: ['maze/smk_pipe.wav', 'maze/smk_pipe.wav'],
     crashType: Maze.CRASH_STOP
   },
   {
@@ -120,8 +120,8 @@ Maze.SKINS = [
     background: false,
     graph: false,
     look: '#000',
-    winSound: ['maze/win.mp3', 'maze/win.ogg'],
-    crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
+    winSound: ['maze/mk64_1stplace.wav', 'maze/mk64_1stplace.wav'],
+    crashSound: ['maze/smk_pipe.wav', 'maze/smk_pipe.wav'],
     crashType: Maze.CRASH_STOP
   }
 ];
